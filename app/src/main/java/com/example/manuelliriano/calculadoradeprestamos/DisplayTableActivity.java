@@ -1,20 +1,12 @@
 package com.example.manuelliriano.calculadoradeprestamos;
 
-import android.app.ActionBar;
-import android.app.Activity;
 import android.content.Intent;
-import android.content.res.Resources;
-import android.graphics.Paint;
-import android.graphics.Rect;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -24,12 +16,10 @@ public class DisplayTableActivity extends AppCompatActivity {
 
 
 
+    //Variables a recibir
     private String monto;
     private String cuotas;
     private String interes;
-    public static final String montoParam="";
-    public static final String interesParam="";
-    public static final String tiempoParam="";
 
 
 
@@ -39,35 +29,19 @@ public class DisplayTableActivity extends AppCompatActivity {
         setContentView(R.layout.activity_display_table);
 
 
-//        List<VariablePrestamo> tablaAmortizacion = TablaAmortizacion();
-//
-//           TableLayout table = (TableLayout)this.findViewById(R.id.tableLayout);
-//           for(VariablePrestamo i:tablaAmortizacion)
-//               {
-//
-//                   TableRow row = (TableRow)LayoutInflater.from(this).inflate(R.layout.fila, null);
-//                   TableRow row2 = (TableRow)LayoutInflater.from(this).inflate(R.layout.fila, null);
-//
-//                   ((TextView)row.findViewById(R.id.textView1)).setText(i.getN());
-//
-//                   ((TextView)row2.findViewById(R.id.c1)).setText(i.getCuota());
-//                   table.addView(row);
-//                   table.addView(row2);
-//               }
-//           table.requestLayout();
-
-
-         // }
-
-
-        TableLayout tableLayout = findViewById(R.id.tableLayout);
+        //Busco tabla en el XML
+        TableLayout tableLayout = findViewById(R.id.table_amortizacio_layout);
+        //Llamo tabla de amortizacion
         List<VariablePrestamo> tablaAmortizacion=TablaAmortizacion();
 
 
+        //Llenar tabla
         for (VariablePrestamo i:tablaAmortizacion) {
+
             TableRow row = new TableRow(this);
             row.setWeightSum(5);
 
+            //Parametros para estilo y set de las columnas
             TableRow.LayoutParams lp;
 
 
@@ -102,11 +76,13 @@ public class DisplayTableActivity extends AppCompatActivity {
             balance.setLayoutParams(lp);
 
 
+            //agregar datos a la fila
             row.addView(cantidad);
             row.addView(monto);
             row.addView(capital);
             row.addView(interes);
             row.addView(balance);
+            //agregar fila a la tabla
              tableLayout.addView(row);
 
 
@@ -117,6 +93,7 @@ public class DisplayTableActivity extends AppCompatActivity {
 
 
 
+    //Funcion para tabla de amortizacion
     public List<VariablePrestamo> TablaAmortizacion(){
 
         Intent parametros = getIntent();

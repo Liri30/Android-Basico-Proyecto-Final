@@ -1,7 +1,7 @@
 package com.example.manuelliriano.calculadoradeprestamos;
 
 public class VariablePrestamo {
-
+//Variables a usar en la app
     private String capital;
     private String cuota;
     private String interes;

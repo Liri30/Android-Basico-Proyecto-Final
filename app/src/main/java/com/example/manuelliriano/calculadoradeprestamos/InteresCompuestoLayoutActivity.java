@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-import android.widget.Toolbar;
+
 
 
 public class InteresCompuestoLayoutActivity extends AppCompatActivity implements View.OnClickListener {
@@ -31,6 +31,7 @@ public class InteresCompuestoLayoutActivity extends AppCompatActivity implements
 
     @Override
     public void onClick(View v) {
+        //Validar entradas
         if (monto.getText().toString().equals("")){
             Toast.makeText(InteresCompuestoLayoutActivity.this, "Por favor introduzca un monto", Toast.LENGTH_SHORT).show();
         }
@@ -43,31 +44,16 @@ public class InteresCompuestoLayoutActivity extends AppCompatActivity implements
         }
         else{
 
-
-
             String a = monto.getText().toString();
             String c = interes.getText().toString();
             String d= cuotas.getText().toString();
 
-//            Double cantidad = Double.parseDouble(a);
-//            Double interesAnual = Double.parseDouble(c);
-//            Double pagos = Double.parseDouble(d);
 
             Intent intent = new Intent(this,DisplayTableActivity.class);
-
-//            Bundle b = new Bundle();
-//            b.putDouble("monto", a);
-//            intent.putExtra(montoParam,b);
-//            b.putDouble("interes",c);
-//            intent.putExtra(interesParam,b);
-//            b.putDouble("tiempo",d);
-//            intent.putExtra(tiempoParam,b);
-
-
+            //Enviar variables al otro activity
             intent.putExtra("monto",a);
             intent.putExtra("interes",c);
             intent.putExtra("tiempo",d);
-
 
             startActivity(intent);
 
