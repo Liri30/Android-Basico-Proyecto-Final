@@ -3,10 +3,15 @@ package com.example.manuelliriano.calculadoradeprestamos;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 
 public class InteresCompuestoLayoutActivity extends AppCompatActivity implements View.OnClickListener {
@@ -22,6 +27,7 @@ public class InteresCompuestoLayoutActivity extends AppCompatActivity implements
         interes=findViewById(R.id.tasa);
         cuotas=findViewById(R.id.tiempo);
 
+        monto.addTextChangedListener(onTextChangedListener());
 
         findViewById(R.id.btn_Calc_compuesto).setOnClickListener(this);
 
@@ -45,6 +51,8 @@ public class InteresCompuestoLayoutActivity extends AppCompatActivity implements
         else{
 
             String a = monto.getText().toString();
+            //Removing , from edit text
+            a= a.replace(",","");
             String c = interes.getText().toString();
             String d= cuotas.getText().toString();
 
@@ -59,5 +67,48 @@ public class InteresCompuestoLayoutActivity extends AppCompatActivity implements
 
         }
 
+    }
+/*****TextWatcher******/
+    private TextWatcher onTextChangedListener() {
+        return new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                monto.removeTextChangedListener(this);
+
+                try {
+                    String originalString = s.toString();
+
+                    Long longval;
+                    if (originalString.contains(",")) {
+                        originalString = originalString.replaceAll(",", "");
+                    }
+                    longval = Long.parseLong(originalString);
+
+                    DecimalFormat formatter = (DecimalFormat) NumberFormat.getInstance(Locale.US);
+                    formatter.applyPattern("#,###,###,###");
+                    String formattedString = formatter.format(longval);
+
+                    //setting text after format to EditText
+                    monto.setText(formattedString);
+                    monto.setSelection(monto.getText().length());
+                } catch (NumberFormatException nfe) {
+                    nfe.printStackTrace();
+                }
+
+                monto.addTextChangedListener(this);
+            }
+        };
     }
 }

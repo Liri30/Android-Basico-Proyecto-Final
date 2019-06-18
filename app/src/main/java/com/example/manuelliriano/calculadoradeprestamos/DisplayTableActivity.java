@@ -3,11 +3,14 @@ package com.example.manuelliriano.calculadoradeprestamos;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
+import android.widget.EditText;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +23,12 @@ public class DisplayTableActivity extends AppCompatActivity {
     private String monto;
     private String cuotas;
     private String interes;
+    private float interesTotal;
+    private float capitalTotal;
+    private float montoTotal;
+    private TextView interesGanado;
+    private TextView TotalPagado;
+    private TextView mensualidad;
 
 
 
@@ -28,6 +37,9 @@ public class DisplayTableActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_table);
 
+        TotalPagado = findViewById(R.id.totalPagar);
+        interesGanado = findViewById(R.id.interesTotal);
+        mensualidad = findViewById(R.id.mensualidad);
 
         //Busco tabla en el XML
         TableLayout tableLayout = findViewById(R.id.table_amortizacio_layout);
@@ -68,6 +80,7 @@ public class DisplayTableActivity extends AppCompatActivity {
             lp.gravity = Gravity.CENTER_HORIZONTAL;
             interes.setText(""+i.getInteres());
             interes.setLayoutParams(lp);
+
 
             TextView balance = new TextView(this);
             lp = new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1.1f);
@@ -122,9 +135,22 @@ public class DisplayTableActivity extends AppCompatActivity {
             valores.setBalance(nf.format(principal));
             valores.setN(x);
 
+            montoTotal+=monthlyPayment;
+
             table.add(valores);
         }
 
+
+        //Poniendo el total pagado y interes en textview
+        double capitalPrestado = Double.parseDouble(monto);
+        String out1= nf.format(montoTotal);
+        TotalPagado.setText(out1);
+        String out2 =  nf.format(montoTotal-capitalPrestado);
+        interesGanado.setText(out2);
+        String out3 = nf.format(monthlyPayment);
+        mensualidad.setText(out3);
+
+        Log.v(" Este es el monto total", String.valueOf(monthlyPayment));
         return table;
 
     }

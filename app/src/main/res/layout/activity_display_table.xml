@@ -6,6 +6,68 @@
     android:layout_height="match_parent"
     tools:context=".DisplayTableActivity"
     android:orientation="vertical">
+
+    <!--First line table-->
+    <LinearLayout
+        android:id="@+id/bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.29"
+            android:layout_height="wrap_content"
+            android:text="Total a pagar:"
+            android:textSize="17dp"
+            android:textColor="#000"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/totalPagar"
+            android:layout_width="0dp"
+            android:layout_weight="0.25"
+            android:background="#F80322"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.23"
+            android:layout_height="wrap_content"
+            android:text="Interes T"
+            android:textSize="17dp"
+            android:textColor="#000"/>
+        <TextView
+            android:id="@+id/interesTotal"
+            android:layout_width="0dp"
+            android:layout_weight="0.23"
+            android:layout_height="wrap_content"
+            android:background="#F80322"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+    <!--Second line table-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.30"
+            android:layout_height="wrap_content"
+            android:text="Mensualidad:"
+            android:textSize="17dp"
+            android:textColor="#000"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/mensualidad"
+            android:layout_width="0dp"
+            android:layout_weight="0.7"
+            android:background="#F80322"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,31 +77,36 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.16"
             android:text="Pago"
-            android:textSize="18dp"/>
+            android:textSize="18dp"
+            android:textColor="#000"/>
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.21"
             android:text="Monto"
-            android:textSize="18dp"/>
+            android:textSize="18dp"
+            android:textColor="#000"/>
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.21"
             android:text="Capital"
-            android:textSize="18dp"/>
+            android:textSize="18dp"
+            android:textColor="#000"/>
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.21"
             android:text="Interés"
-            android:textSize="18dp"/>
+            android:textSize="18dp"
+            android:textColor="#000"/>
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.21"
             android:text="Balance"
-            android:textSize="18dp"/>
+            android:textSize="18dp"
+            android:textColor="#000"/>
     </LinearLayout>
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -57,15 +124,7 @@
 
     </ScrollView>
 
-    <!--<TableLayout-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:id="@+id/tabla_amortizacion">-->
-        <!--<TableRow-->
-            <!--android:id="@+id/tr1">-->
 
-        <!--</TableRow>-->
 
-    <!--</TableLayout>-->
 
 </LinearLayout>
